@@ -21,11 +21,11 @@ ARG USER="nobody"
 ARG GROUP="nogroup"
 
 RUN mkdir /mcPortKnock && chown ${USER}:${GROUP} /mcPortKnock
-COPY --from=builder --chown=${USER}:${GROUP} /go/src/github.com/daniel-widrick/mcPortKnock/mcPortKnock /mcPortKnock/mcPortKnock
+COPY --from=builder --chown=${USER}:${GROUP} /go/src/github.com/daniel-widrick/mcPortKnock/mcPortKnock* /mcPortKnock/
 
 USER ${USER}
 
 WORKDIR /mcPortKnock
 EXPOSE 25565
 
-ENTRYPOINT ["/mcPortKnock/mcPortKnock"]
+ENTRYPOINT ["/mcPortKnock/mcPortKnock.sh"]
