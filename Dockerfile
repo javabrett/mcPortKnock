@@ -17,6 +17,10 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -buildmode=default -ldflags="
 
 FROM $BASE_IMAGE
 
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl awscli && \
+    rm -rf /var/lib/apt/lists/*
+
 ARG USER="nobody"
 ARG GROUP="nogroup"
 
